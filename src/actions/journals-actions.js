@@ -65,3 +65,24 @@ export const createJournal = data => (dispatch, getState) => {
     })
     .catch(console.error);
 };
+
+// DELETE a Journal
+export const JOURNAL_DELETE_SUCCESS = "JOURNAL_DELETE_SUCCESS";
+
+const journalDeleteSuccess = journal => ({
+  type: JOURNAL_DELETE_SUCCESS,
+  payload: journal // is null
+});
+
+export const deleteJournal = id => (dispatch, getState) => {
+  const { auth } = getState();
+
+  request
+    .delete(`${baseUrl}/journals/${id}`)
+    .set("Authorization", `Bearer ${auth}`)
+    .then(response => {
+      //   console.log("RES", response);
+      dispatch(journalDeleteSuccess(id));
+    })
+    .catch(console.error);
+};

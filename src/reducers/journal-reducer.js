@@ -5,7 +5,7 @@ export default (state = {}, action = {}) => {
     case GET_JOURNAL_SUCCESS:
       return { ...action.payload };
 
-    case "DELETE_JOURNAL":
+    case "JOURNAL_DELETE_SUCCESS":
       return {};
 
     default:

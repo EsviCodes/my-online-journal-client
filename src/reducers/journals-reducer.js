@@ -9,6 +9,8 @@ export default function(state = [], action = {}) {
       return action.payload;
     case JOURNAL_CREATE_SUCCESS:
       return [...state, { ...action.payload }];
+    case "JOURNAL_DELETE_SUCCESS":
+      return state.filter(journal => journal.id !== action.payload);
     default:
       return state;
   }

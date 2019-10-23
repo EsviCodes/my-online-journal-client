@@ -2,6 +2,7 @@ import React from "react";
 import JournalDetails from "./JournalDetails";
 import { connect } from "react-redux";
 import { loadJournal } from "../actions/journals-actions";
+import DeleteJournalButtonContainer from "./DeleteJournalButtonContainer";
 
 class JournalDetailsContainer extends React.Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class JournalDetailsContainer extends React.Component {
     return (
       <div>
         <JournalDetails journal={this.props.journal} />
+        <DeleteJournalButtonContainer />
       </div>
     );
   }
