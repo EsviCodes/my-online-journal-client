@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "./LoginForm";
 import { connect } from "react-redux";
-//import { login } from "../actions/auth";
+import { login } from "../actions/auth-actions";
 import { Redirect } from "react-router-dom";
 
 class LoginFormContainer extends React.Component {
@@ -38,6 +38,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(
-  mapStateToProps
-  // { login }
+  mapStateToProps,
+  { login }
 )(LoginFormContainer);

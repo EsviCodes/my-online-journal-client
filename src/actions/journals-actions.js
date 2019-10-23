@@ -40,3 +40,24 @@ export const loadJournal = id => (dispatch, getState) => {
     dispatch(getJournalSuccess(response.body));
   });
 };
+
+// Create a Journal
+export const JOURNAL_CREATE_SUCCESS = "JOURNAL_CREATE_SUCCESS";
+
+const journalCreateSuccess = journal => ({
+  type: JOURNAL_CREATE_SUCCESS,
+  payload: journal
+});
+
+export const createJournal = data => (dispatch, getState) => {
+  const token = getState().auth;
+
+  request
+    .post(`${baseUrl}/journals`)
+    .set("Authorization", `Bearer ${token}`)
+    .send(data)
+    .then(response => {
+      dispatch(journalCreateSuccess(response.body));
+    })
+    .catch(console.error);
+};

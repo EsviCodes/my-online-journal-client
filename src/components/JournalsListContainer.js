@@ -2,6 +2,7 @@ import React from "react";
 import { getJournals } from "../actions/journals-actions";
 import { connect } from "react-redux";
 import JournalsList from "./JournalsList";
+import CreateJournalFormContainer from "./CreateJournalFormContainer";
 
 class JournalsListContainer extends React.Component {
   componentDidMount() {
@@ -9,7 +10,12 @@ class JournalsListContainer extends React.Component {
   }
 
   render() {
-    return <JournalsList journals={this.props.journals} />;
+    return (
+      <div>
+        <JournalsList journals={this.props.journals} />
+        <CreateJournalFormContainer />
+      </div>
+    );
   }
 }
 
