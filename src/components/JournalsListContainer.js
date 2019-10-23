@@ -13,9 +13,9 @@ class JournalsListContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return { journals: state.journals };
-}
+};
 
 const mapDispatchToProps = { getJournals };
 
