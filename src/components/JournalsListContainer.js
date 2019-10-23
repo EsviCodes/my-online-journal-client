@@ -3,7 +3,7 @@ import { getJournals } from "../actions/journals-actions";
 import { connect } from "react-redux";
 import JournalsList from "./JournalsList";
 import CreateJournalFormContainer from "./CreateJournalFormContainer";
-
+import "../styles/JournalsListContainer.css";
 class JournalsListContainer extends React.Component {
   componentDidMount() {
     this.props.getJournals();

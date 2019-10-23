@@ -13,11 +13,12 @@ function allJournals(payload) {
 }
 
 export const getJournals = () => (dispatch, getState) => {
-  const state = getState();
-  const { journals } = state;
+  const { journals, auth } = getState();
+  // console.log(getState());
 
-  if (!journals.length) {
+  if (!!!journals.length) {
     request(`${baseUrl}/journals`)
+      .set("Authorization", `Bearer ${auth}`)
       .then(response => {
         const action = allJournals(response.body);
         dispatch(action);
@@ -35,10 +36,13 @@ const getJournalSuccess = journal => ({
 });
 
 export const loadJournal = id => (dispatch, getState) => {
-  request(`${baseUrl}/journals/${id}`).then(response => {
-    console.log(response);
-    dispatch(getJournalSuccess(response.body));
-  });
+  const { auth } = getState();
+  request(`${baseUrl}/journals/${id}`)
+    .set("Authorization", `Bearer ${auth}`)
+    .then(response => {
+      console.log(response);
+      dispatch(getJournalSuccess(response.body));
+    });
 };
 
 // Create a Journal
@@ -50,11 +54,11 @@ const journalCreateSuccess = journal => ({
 });
 
 export const createJournal = data => (dispatch, getState) => {
-  const token = getState().auth;
+  const { auth } = getState();
 
   request
     .post(`${baseUrl}/journals`)
-    .set("Authorization", `Bearer ${token}`)
+    .set("Authorization", `Bearer ${auth}`)
     .send(data)
     .then(response => {
       dispatch(journalCreateSuccess(response.body));
