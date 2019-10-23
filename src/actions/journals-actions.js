@@ -66,6 +66,28 @@ export const createJournal = data => (dispatch, getState) => {
     .catch(console.error);
 };
 
+// UPDATE one Journal
+export const JOURNAL_UPDATE_SUCCESS = "JOURNAL_UPDATE_SUCCESS";
+
+const journalUpdateSuccess = journal => ({
+  type: JOURNAL_UPDATE_SUCCESS,
+  payload: journal
+});
+
+export const updateJournal = (id, data) => (dispatch, getState) => {
+  const { auth } = getState();
+
+  request
+    .put(`${baseUrl}/teams/${id}`)
+    .set("Authorization", `Bearer ${auth}`)
+    .send(data)
+    .then(res => {
+      console.log("RES", res.body);
+      dispatch(journalUpdateSuccess(res.body));
+    })
+    .catch(console.error);
+};
+
 // DELETE a Journal
 export const JOURNAL_DELETE_SUCCESS = "JOURNAL_DELETE_SUCCESS";
 
