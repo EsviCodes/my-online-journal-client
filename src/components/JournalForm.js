@@ -9,12 +9,10 @@ export default function(props) {
         name="title"
         onChange={props.onChange}
       />
-      <label>Date:</label>
-      <input value={props.values.date} name="date" onChange={props.onChange} />
-      <label>Summery:</label>
+      <label>description:</label>
       <input
-        value={props.values.summery}
-        name="summery"
+        value={props.values.description}
+        name="description"
         onChange={props.onChange}
       />
       <input type="submit" />

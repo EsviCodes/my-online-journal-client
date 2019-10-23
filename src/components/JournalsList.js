@@ -10,6 +10,7 @@ export default function JournalsList(props) {
         return (
           <li key={journal.id}>
             <Link to={`/journals/${journal.id}`}>{journal.title}</Link>
+            <p>{journal.description}</p>
           </li>
         );
       })}

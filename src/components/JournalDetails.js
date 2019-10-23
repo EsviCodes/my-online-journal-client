@@ -12,7 +12,6 @@ export default function JournalDetails(props) {
           return (
             <div key={entry.id}>
               <h1>{entry.title}</h1>
-              <p>{entry.date}</p>
               <p>{entry.entry}</p>
             </div>
           );

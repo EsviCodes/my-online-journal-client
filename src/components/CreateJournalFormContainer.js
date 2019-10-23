@@ -6,8 +6,7 @@ import JournalForm from "./JournalForm";
 class CreateJournalFormContainer extends React.Component {
   state = {
     title: "",
-    date: "",
-    summery: ""
+    description: ""
   };
 
   onChange = event => {
@@ -21,8 +20,7 @@ class CreateJournalFormContainer extends React.Component {
     this.props.createJournal(this.state);
     this.setState({
       title: "",
-      date: null,
-      summery: ""
+      description: ""
     });
   };
 
