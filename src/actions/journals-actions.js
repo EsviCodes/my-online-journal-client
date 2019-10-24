@@ -1,4 +1,5 @@
 import request from "superagent";
+import authRequest, { apiUrl } from "../actions/request";
 
 export const ALL_JOURNALS = "ALL_JOURNALS";
 
@@ -17,7 +18,9 @@ export const getJournals = () => (dispatch, getState) => {
   // console.log(getState());
 
   if (!!!journals.length) {
-    request(`${baseUrl}/journals`)
+    // authRequest
+    request
+      .get(apiUrl("/journals"))
       .set("Authorization", `Bearer ${auth}`)
       .then(response => {
         const action = allJournals(response.body);
@@ -45,7 +48,7 @@ export const loadJournal = id => (dispatch, getState) => {
     });
 };
 
-// Create a Journal
+// // Create a Journal
 export const JOURNAL_CREATE_SUCCESS = "JOURNAL_CREATE_SUCCESS";
 
 const journalCreateSuccess = journal => ({
@@ -66,7 +69,7 @@ export const createJournal = data => (dispatch, getState) => {
     .catch(console.error);
 };
 
-// UPDATE one Journal
+// // UPDATE one Journal
 export const JOURNAL_UPDATE_SUCCESS = "JOURNAL_UPDATE_SUCCESS";
 
 const journalUpdateSuccess = journal => ({
@@ -88,7 +91,7 @@ export const updateJournal = (id, data) => (dispatch, getState) => {
     .catch(console.error);
 };
 
-// DELETE a Journal
+// // DELETE a Journal
 export const JOURNAL_DELETE_SUCCESS = "JOURNAL_DELETE_SUCCESS";
 
 const journalDeleteSuccess = journal => ({

@@ -13,16 +13,6 @@ class EditJournalButtonContainer extends Component {
     this.setState({ editMode: true });
   };
 
-  onEdit = () => {
-    this.setState({
-      editMode: true,
-      formValues: {
-        title: this.props.journal.title,
-        description: this.props.journal.description
-      }
-    });
-  };
-
   onChange = event => {
     this.setState({
       formValues: {
@@ -41,13 +31,18 @@ class EditJournalButtonContainer extends Component {
   };
 
   render() {
+    console.log("PROPS IN EDIT", this.props);
     return (
       <form onSubmit={this.onSubmit}>
         <label>Journal Title:</label>
-        <input value={this.state.title} name="title" onChange={this.onChange} />
+        <input
+          value={this.props.journal.title}
+          name="title"
+          onChange={this.onChange}
+        />
         <label>description:</label>
         <input
-          value={this.state.description}
+          value={this.props.journal.description}
           name="description"
           onChange={this.onChange}
         />

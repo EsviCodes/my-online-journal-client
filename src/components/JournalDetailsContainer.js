@@ -3,15 +3,21 @@ import JournalDetails from "./JournalDetails";
 import { connect } from "react-redux";
 import { loadJournal } from "../actions/journals-actions";
 import DeleteJournalButtonContainer from "./DeleteJournalButtonContainer";
-import EditJournalButtonContainer from "./EditJournalButtonContainer";
+import EditJournalButtonContainer from "./EditJournalFormContainer";
 
 class JournalDetailsContainer extends React.Component {
+  state = {
+    editMode: false
+  };
+
   componentDidMount() {
     this.props.loadJournal(Number(this.props.match.params.id));
   }
 
-  onClick = () => {
-    this.render(<EditJournalButtonContainer />);
+  onEdit = () => {
+    this.setState({
+      editMode: true
+    });
   };
 
   render() {
@@ -20,8 +26,9 @@ class JournalDetailsContainer extends React.Component {
     return (
       <div>
         <JournalDetails journal={this.props.journal} />
-        {/* <button onClick={this.onClick}>Edit Journal</button> */}
-        <EditJournalButtonContainer />
+        <button onClick={this.onEdit}>Edit Journal</button>
+        {this.state.editMode ? <EditJournalButtonContainer /> : ""}
+
         <DeleteJournalButtonContainer />
       </div>
     );
