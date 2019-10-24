@@ -4,45 +4,31 @@ import { updateJournal } from "../actions/journals-actions";
 
 class EditJournalButtonContainer extends Component {
   state = {
-    editMode: false
-  };
-
-  handleClick = () => {
-    const { id } = this.props;
-    this.props.updateJournal(id);
-    this.setState({ editMode: true });
+    title: this.props.journal.title,
+    description: this.props.journal.description
   };
 
   onChange = event => {
     this.setState({
-      formValues: {
-        ...this.state.formValues,
-        [event.target.name]: event.target.value
-      }
+      [event.target.name]: event.target.value
     });
   };
 
   onSubmit = event => {
     event.preventDefault();
-    this.setState({
-      editMode: false
-    });
-    this.props.updateJournal(this.props.journal.id, this.state.formValues);
+    this.props.updateJournal(this.props.journal.id, this.state);
   };
 
   render() {
     console.log("PROPS IN EDIT", this.props);
+    console.log("STATE IN EDIT", this.state);
     return (
       <form onSubmit={this.onSubmit}>
         <label>Journal Title:</label>
-        <input
-          value={this.props.journal.title}
-          name="title"
-          onChange={this.onChange}
-        />
+        <input value={this.state.title} name="title" onChange={this.onChange} />
         <label>description:</label>
         <input
-          value={this.props.journal.description}
+          value={this.state.description}
           name="description"
           onChange={this.onChange}
         />

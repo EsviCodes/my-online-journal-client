@@ -81,7 +81,7 @@ export const updateJournal = (id, data) => (dispatch, getState) => {
   const { auth } = getState();
 
   request
-    .put(`${baseUrl}/teams/${id}`)
+    .put(`${baseUrl}/journals/${id}`)
     .set("Authorization", `Bearer ${auth}`)
     .send(data)
     .then(res => {

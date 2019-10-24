@@ -26,8 +26,12 @@ class JournalDetailsContainer extends React.Component {
     return (
       <div>
         <JournalDetails journal={this.props.journal} />
-        <button onClick={this.onEdit}>Edit Journal</button>
-        {this.state.editMode ? <EditJournalButtonContainer /> : ""}
+
+        {this.state.editMode ? (
+          <EditJournalButtonContainer />
+        ) : (
+          <button onClick={this.onEdit}>Edit Journal</button>
+        )}
 
         <DeleteJournalButtonContainer />
       </div>

@@ -7,6 +7,7 @@ export default function JournalDetails(props) {
   return (
     <div>
       <h3>Journal: {props.journal.title}</h3>
+      <p>{props.journal.description}</p>
       <ul>
         {props.journal.entries.map(entry => {
           return (
