@@ -15,7 +15,7 @@ export default function(props) {
         name="description"
         onChange={props.onChange}
       />
-      <input type="submit" />
+      <input type="submit" value="Add" />
     </form>
   );
 }

@@ -4,16 +4,34 @@ import { connect } from "react-redux";
 import JournalsList from "./JournalsList";
 import CreateJournalFormContainer from "./CreateJournalFormContainer";
 import "../styles/JournalsListContainer.css";
+
 class JournalsListContainer extends React.Component {
+  state = {
+    add: false
+  };
+
   componentDidMount() {
     this.props.getJournals();
   }
 
+  add = () => {
+    this.setState({
+      add: true
+    });
+  };
   render() {
     return (
       <div>
+        <h2>My Online Journals</h2>
         <JournalsList journals={this.props.journals} />
-        <CreateJournalFormContainer />
+        {this.state.add ? (
+          <div>
+            <h3>Add A New Journal</h3>
+            <CreateJournalFormContainer />
+          </div>
+        ) : (
+          <button onClick={this.add}>Add a new journal</button>
+        )}
       </div>
     );
   }

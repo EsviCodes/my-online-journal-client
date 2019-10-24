@@ -1,11 +1,10 @@
 import request from "superagent";
 import authRequest, { apiUrl } from "../actions/request";
 
-export const ALL_JOURNALS = "ALL_JOURNALS";
-
 const baseUrl = "http://localhost:4000";
 
 // Get all Journals
+export const ALL_JOURNALS = "ALL_JOURNALS";
 function allJournals(payload) {
   return {
     type: ALL_JOURNALS,
